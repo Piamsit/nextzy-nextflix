@@ -31,7 +31,7 @@ export const MovieDetailPage = () => {
   if (isError) {
     return <MovieError message="Failed to load movie details" />
   }
-  
+
   if (!movie) {
     return <MovieNotFound />
   }
@@ -107,7 +107,7 @@ export const MovieDetailPage = () => {
                 <Plus className="size-5 sm:size-6 md:size-7" />
                 <span>My List</span>
               </Button>
-              <Button className="text-white hover:bg-gray-800/80 flex items-center gap-1 sm:gap-2 px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-6 text-base sm:text-lg md:text-xl font-semibold rounded-full transition-all duration-300 border border-gray-500/50">
+              <Button className="text-white dark:bg-gray-800/80 hover:bg-gray-800/80 flex items-center gap-1 sm:gap-2 px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-6 text-base sm:text-lg md:text-xl font-semibold rounded-full transition-all duration-300 border border-gray-500/50">
                 <Info className="size-5 sm:size-6 md:size-7" />
                 <span>Info</span>
               </Button>
@@ -153,7 +153,7 @@ export const MovieDetailPage = () => {
             <div className="flex justify-center md:justify-start">
               <Button
                 onClick={() => router.back()}
-                className="mt-4 sm:mt-8 border-white text-white hover:bg-white hover:text-black font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-all duration-300 text-base sm:text-lg group"
+                className="mt-4 sm:mt-8 border-white text-white dark:text-black hover:bg-white hover:text-black font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-all duration-300 text-base sm:text-lg group"
               >
                 <span className="transform group-hover:-translate-x-1 transition-transform duration-300">←</span> Back
               </Button>

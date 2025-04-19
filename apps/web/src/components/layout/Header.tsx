@@ -7,10 +7,11 @@ import { Search, Bell, ChevronDown, Cast } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
-import { NetflixLogo } from '../logo/netflix-logo';
+import { NetflixLogo } from '../logo/NetflixLogo';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { ThemeToggle } from '../ThemeToggle';
 
 export default function Header() {
     const isMobile = useIsMobile();
@@ -126,13 +127,14 @@ export default function Header() {
 
                 </div>
                 <div className="flex items-center space-x-4">
-                    <Button size="icon" className="text-white">
+                    <Button size="icon" variant={"ghost"} className='cursor-pointer hover:bg-transparent'>
                         <Search className="size-6 text-gray-200" />
                     </Button>
-                    <span className="text-sm text-gray-200">Kids</span>
-                    <Button size="icon" className="text-white hidden md:flex">
+                    <span className="text-sm text-gray-200 cursor-pointer">Kids</span>
+                    <Button size="icon" variant={"ghost"} className='cursor-pointer hover:bg-transparent'>
                         <Bell className="size-6 text-gray-200" />
                     </Button>
+                    <ThemeToggle />
                     <div className="flex items-center group">
                         <div className="w-8 h-8 bg-gray-600 rounded" />
                         <ChevronDown className="size-4 text-emerald-700 transition-transform group-hover:rotate-180" />

@@ -117,6 +117,16 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+	html {
+		scroll-behavior: smooth;
+		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none; /* Internet Explorer and Edge */
+	}
+
+	/* WebKit browsers (Chrome, Safari) */
+	::-webkit-scrollbar {
+		display: none;
+	}
 
 	.animate-kenburns {
 		animation: kenburns 20s ease-in-out infinite alternate;
