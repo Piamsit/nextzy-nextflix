@@ -14,16 +14,19 @@ import {
 import { MovieLoading } from "@/components/state/MovieLoading";
 import { MovieError } from "@/components/state/MovieError";
 import { MovieNotFound } from "@/components/state/MovieNotFound";
+import { useLocale, useTranslations } from "next-intl";
 
 export const MoviePage = () => {
-    const { data: movies, isLoading, isError } = useMovies();
+    const locale = useLocale();
+    const t = useTranslations();
+    const { data: movies, isLoading, isError } = useMovies({ locale });
 
     if (isLoading) {
         return <MovieLoading />
     }
 
     if (isError) {
-        return <MovieError message="Failed to load movies" />
+        return <MovieError />
     }
 
     if (!movies || movies.length === 0) {
@@ -33,13 +36,11 @@ export const MoviePage = () => {
     const heroMovie = movies[0];
 
     return (
-        <main className="max-w-screen min-h-screen bg-black text-white">
-            <Header />
-
+        <div className="flex flex-col min-h-screen bg-black text-white">
             {heroMovie && <HeroBanner movie={heroMovie} />}
-            <section className="-mt-20 lg:-mt-36 relative z-20">
+            <section className="-mt-20 lg:-mt-30 relative z-20">
                 <div className="px-4 lg:px-16 py-5">
-                    <h2 className="text-2xl font-bold mb-4">Popular on Netflix</h2>
+                    <h2 className="text-3xl font-bold mb-4">{t("popularOnNetflix")}</h2>
                     <Carousel
                         opts={{
                             align: "start",
@@ -63,6 +64,6 @@ export const MoviePage = () => {
                     </Carousel>
                 </div>
             </section>
-        </main>
+        </div>
     );
 };

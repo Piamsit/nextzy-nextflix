@@ -2,11 +2,11 @@ import { Movie } from '@repo/types/movie/entities/movie.entity'
 import { useQuery } from '@tanstack/react-query'
 import { fetchMovies } from '../services/movieService'
 
-export const useMovies = () =>
+export const useMovies = ({ locale }: { locale: string }) =>
     useQuery<Movie[]>({
-        queryKey: ['movies'],
+        queryKey: ['movies', locale],
         queryFn: async () => {
-            const data = await fetchMovies()
+            const data = await fetchMovies(locale)
             return data.results
         },
     })

@@ -11,12 +11,15 @@ import { useIsMobile } from '@/hooks/useIsMobile'
 import { MovieLoading } from '@/components/state/MovieLoading'
 import { MovieError } from '@/components/state/MovieError'
 import { MovieNotFound } from '@/components/state/MovieNotFound'
+import { useLocale, useTranslations } from 'next-intl'
 
 export const MovieDetailPage = () => {
+  const locale = useLocale();
+  const t = useTranslations();
   const router = useRouter()
   const movieId = useMovieId()
   const isMobile = useIsMobile()
-  const { data: movie, isPending, isError } = useMovie({ movieId })
+  const { data: movie, isPending, isError } = useMovie({ movieId, locale })
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
@@ -29,7 +32,7 @@ export const MovieDetailPage = () => {
   }
 
   if (isError) {
-    return <MovieError message="Failed to load movie details" />
+    return <MovieError />
   }
 
   if (!movie) {
@@ -54,7 +57,7 @@ export const MovieDetailPage = () => {
         </div>
       )}
 
-      <div className={`absolute top-[15vh] sm:top-[10vh] px-4 sm:px-6 md:px-16 w-full z-20 pb-20 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className={`absolute top-[25vh] sm:top-[10vh] px-4 sm:px-6 md:px-16 w-full z-20 pb-20 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="flex flex-col items-center gap-6 md:gap-10 max-w-7xl mx-auto">
 
           {movie.poster_path && (
@@ -69,7 +72,7 @@ export const MovieDetailPage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
                   <Button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-bold">
-                    <Play className="mr-2" /> Watch Now
+                    <Play className="mr-2" /> {t("watchNow")}
                   </Button>
                 </div>
               </div>
@@ -101,15 +104,15 @@ export const MovieDetailPage = () => {
             <div className="flex justify-center md:justify-start flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 animate-fadeIn">
               <Button className="bg-white text-black hover:bg-gray-300 flex items-center gap-1 sm:gap-2 px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 text-base sm:text-lg md:text-xl font-semibold rounded-full transition-all duration-300 hover:scale-105">
                 <Play className="size-5 sm:size-6 md:size-7 fill-black" />
-                <span>Play</span>
+                <span>{t("play")}</span>
               </Button>
               <Button className="bg-gray-700/90 text-white hover:bg-gray-600 flex items-center gap-1 sm:gap-2 px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 text-base sm:text-lg md:text-xl font-semibold rounded-full transition-all duration-300 hover:scale-105">
                 <Plus className="size-5 sm:size-6 md:size-7" />
-                <span>My List</span>
+                <span>{t("myList")}</span>
               </Button>
               <Button className="text-white dark:bg-gray-800/80 hover:bg-gray-800/80 flex items-center gap-1 sm:gap-2 px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-6 text-base sm:text-lg md:text-xl font-semibold rounded-full transition-all duration-300 border border-gray-500/50">
                 <Info className="size-5 sm:size-6 md:size-7" />
-                <span>Info</span>
+                <span>{t("info")}</span>
               </Button>
             </div>
 
@@ -121,30 +124,30 @@ export const MovieDetailPage = () => {
               <div className="transition-all duration-300 hover:text-white hover:bg-gray-800/70 p-3 rounded-lg flex items-center gap-2">
                 <Info className="size-5 text-red-500" />
                 <div className='ml-2'>
-                  <span className="font-semibold text-white block">Original Title</span>
+                  <span className="font-semibold text-white block">{t("originalTitle")}</span>
                   <span>{movie.original_title}</span>
                 </div>
               </div>
               <div className="transition-all duration-300 hover:text-white hover:bg-gray-800/70 p-3 rounded-lg flex items-center gap-2">
                 <Star className="size-5 text-yellow-500" />
                 <div className='ml-2'>
-                  <span className="font-semibold text-white block">Popularity</span>
-                  <span>{movie.popularity?.toFixed(0)} points</span>
+                  <span className="font-semibold text-white block">{t("popularity")}</span>
+                  <span>{t("popularityPoints", { points: movie.popularity?.toFixed(0) })}</span>
                 </div>
               </div>
               <div className="transition-all duration-300 hover:text-white hover:bg-gray-800/70 p-3 rounded-lg flex items-center gap-2">
                 <Video className="size-5 text-green-500" />
                 <div className='ml-2'>
-                  <span className="font-semibold text-white block">Video</span>
+                  <span className="font-semibold text-white block">{t("video")}</span>
                   <span className={movie.video ? 'text-green-400' : 'text-red-400'}>
-                    {movie.video ? 'Available' : 'Not Available'}
+                    {movie.video ? t("available") : t("notAvailable")}
                   </span>
                 </div>
               </div>
               <div className="transition-all duration-300 hover:text-white hover:bg-gray-800/70 p-3 rounded-lg flex items-center gap-2">
                 <Calendar className="size-5 text-purple-500" />
                 <div className='ml-2'>
-                  <span className="font-semibold text-white block">Release Date</span>
+                  <span className="font-semibold text-white block">{t("releaseDate")}</span>
                   <span>{movie.release_date}</span>
                 </div>
               </div>
@@ -155,7 +158,7 @@ export const MovieDetailPage = () => {
                 onClick={() => router.back()}
                 className="mt-4 sm:mt-8 border-white text-white dark:text-black hover:bg-white hover:text-black font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-all duration-300 text-base sm:text-lg group"
               >
-                <span className="transform group-hover:-translate-x-1 transition-transform duration-300">←</span> Back
+                <span className="transform group-hover:-translate-x-1 transition-transform duration-300">←</span> {t("back")}
               </Button>
             </div>
           </div>

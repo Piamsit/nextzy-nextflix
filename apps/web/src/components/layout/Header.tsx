@@ -12,8 +12,11 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '../ThemeToggle';
+import { LanguageToggle } from '../LanguageToggle';
+import { useTranslations } from 'next-intl';
 
 export default function Header() {
+    const t = useTranslations();
     const isMobile = useIsMobile();
     const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
@@ -31,23 +34,23 @@ export default function Header() {
     }, [scrolled]);
 
     const homeItems = [
-        { title: 'Home', href: '/' },
-    ]
+        { title: t("home"), href: '/' },
+    ];
 
     const primaryItems = [
-        { title: 'TV Shows', href: '/tv-shows' },
-        { title: 'Movies', href: '/movies' },
-    ]
+        { title: t("tvShows"), href: '/tv-shows' },
+        { title: t("movies"), href: '/movies' },
+    ];
 
     const dropdownItems = [
-        { title: 'New & Popular', href: '/new' },
-        { title: 'My List', href: '/my-list' },
-        { title: 'Browse by Languages', href: '/browse' },
-    ]
+        { title: t("newAndPopular"), href: '/new' },
+        { title: t("myList"), href: '/my-list' },
+        { title: t("browseByLanguages"), href: '/browse' },
+    ];
 
     if (isMobile) {
         return (
-            <header className='absolute top-0 w-full z-50 bg-transparent'>
+            <header className='fixed top-0 w-full z-50 bg-black/80 backdrop-blur-sm pb-2'>
                 <div className="flex items-center justify-between w-full p-5">
                     <Link href="/" className="w-24 h-7 relative">
                         <Image
@@ -60,6 +63,8 @@ export default function Header() {
                     </Link>
 
                     <div className="flex justify-center items-center space-x-4">
+                        <LanguageToggle />
+                        <ThemeToggle />
                         <Button variant="ghost" size="icon" className="text-white">
                             <Cast className="size-8 text-gray-200" />
                         </Button>
@@ -79,7 +84,7 @@ export default function Header() {
                     ))}
 
                     <div className="flex items-center group">
-                        <span className='text-lg md:text-2xl'>Categories</span>
+                        <span className='text-lg md:text-2xl'>{t("categories")}</span>
                         <ChevronDown
                             className={'ml-1 h-4 w-4 transition-transform group-hover:rotate-180'}
                         />
@@ -123,17 +128,16 @@ export default function Header() {
                             ))}
                         </NavigationMenuList>
                     </NavigationMenu>
-
-
                 </div>
                 <div className="flex items-center space-x-4">
                     <Button size="icon" variant={"ghost"} className='cursor-pointer hover:bg-transparent'>
                         <Search className="size-6 text-gray-200" />
                     </Button>
-                    <span className="text-sm text-gray-200 cursor-pointer">Kids</span>
+                    <span className="text-sm text-gray-200 cursor-pointer">{t("kids")}</span>
                     <Button size="icon" variant={"ghost"} className='cursor-pointer hover:bg-transparent'>
                         <Bell className="size-6 text-gray-200" />
                     </Button>
+                    <LanguageToggle />
                     <ThemeToggle />
                     <div className="flex items-center group">
                         <div className="w-8 h-8 bg-gray-600 rounded" />
