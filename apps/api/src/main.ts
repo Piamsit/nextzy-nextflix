@@ -12,7 +12,6 @@ async function bootstrap() {
   const isProd = configService.get('NODE_ENV') === 'production';
   const frontendOrigin = configService.get<string>('FRONTEND_ORIGIN')?.split(',') ?? [];
 
-  // // ✅ CORS
   app.enableCors({
     origin: isProd ? frontendOrigin : true,
     credentials: true,

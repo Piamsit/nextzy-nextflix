@@ -3,7 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import Joi from 'joi';
-import { LinksModule } from './links/links.module';
 import { MovieModule } from './movie/movie.module';
 
 @Module({
@@ -25,7 +24,6 @@ import { MovieModule } from './movie/movie.module';
         },
       ],
     }),
-    LinksModule,
     MovieModule
   ],
   controllers: [],

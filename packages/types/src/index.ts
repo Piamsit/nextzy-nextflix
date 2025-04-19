@@ -1,9 +1,7 @@
-import { Link } from './links/entities/link.entity';
 import { Movie, MovieResponse } from './movie/entities/movie.entity';
 
-export const links = {
+export const movie = {
     entities: {
-        Link,
         Movie,
         MovieResponse
     },
