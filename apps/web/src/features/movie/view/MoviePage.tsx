@@ -11,20 +11,23 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
+import { MovieLoading } from "@/components/state/MovieLoading";
+import { MovieError } from "@/components/state/MovieError";
+import { MovieNotFound } from "@/components/state/MovieNotFound";
 
 export const MoviePage = () => {
-    const { data: movies, isLoading, error } = useMovies();
+    const { data: movies, isLoading, isError } = useMovies();
 
     if (isLoading) {
-        return <p className="text-center">Loading...</p>;
+        return <MovieLoading />
     }
 
-    if (error) {
-        return <p className="text-center text-red-500">Failed to load</p>;
+    if (isError) {
+        return <MovieError message="Failed to load movies" />
     }
 
     if (!movies || movies.length === 0) {
-        return <p className="text-center text-red-500">No movies found</p>;
+        return <MovieNotFound />
     }
 
     const heroMovie = movies[0];

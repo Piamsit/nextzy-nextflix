@@ -1,13 +1,16 @@
 'use client'
 
 import Image from 'next/image'
-import { notFound, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
 import { useMovieId } from '../lib/useMovieId'
 import { useMovie } from '../hooks/useMovie'
 import { Play, Plus, Info, Star, Calendar, Globe, Users, Video } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { MovieLoading } from '@/components/state/MovieLoading'
+import { MovieError } from '@/components/state/MovieError'
+import { MovieNotFound } from '@/components/state/MovieNotFound'
 
 export const MovieDetailPage = () => {
   const router = useRouter()
@@ -22,18 +25,15 @@ export const MovieDetailPage = () => {
   }, [])
 
   if (isPending) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-black">
-        <div className="animate-pulse flex flex-col items-center">
-          <div className="w-16 h-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin mb-4" />
-          <p className="text-xl text-white font-medium">Loading...</p>
-        </div>
-      </div>
-    )
+    return <MovieLoading />
   }
 
-  if (isError || !movie) {
-    return notFound()
+  if (isError) {
+    return <MovieError message="Failed to load movie details" />
+  }
+  
+  if (!movie) {
+    return <MovieNotFound />
   }
 
   return (
