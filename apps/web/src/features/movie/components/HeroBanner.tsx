@@ -6,6 +6,7 @@ import { Movie } from '@repo/types/movie/entities/movie.entity';
 import Image from 'next/image';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 interface HeroBannerProps {
     movie: Movie;
@@ -63,9 +64,12 @@ export default function HeroBanner({ movie }: HeroBannerProps) {
                             <Button
                                 variant="secondary"
                                 className="w-[215px] h-[60px] bg-gray-500/70 text-white hover:bg-gray-500/40 flex items-center gap-3 px-8 py-3 text-lg font-semibold rounded"
+                                asChild
                             >
-                                <Info className="size-9" />
-                                <span className='text-2xl font-bold'>{t("moreInfo")}</span>
+                                <Link href={`/${movie.id}`}>
+                                    <Info className="size-9" />
+                                    <span className='text-2xl font-bold'>{t("moreInfo")}</span>
+                                </Link>
                             </Button>
                         </div>
                     </>
@@ -81,9 +85,12 @@ export default function HeroBanner({ movie }: HeroBannerProps) {
                         </Button>
                         <Button
                             className="w-1/3 h-full bg-black dark:text-white flex flex-col items-center gap-1 font-semibold text-lg rounded"
+                            asChild
                         >
-                            <Info className="size-6" />
-                            <span className='font-bold'>{t("info")}</span>
+                            <Link href={`/${movie.id}`}>
+                                <Info className="size-6" />
+                                <span className='font-bold'>{t("info")}</span>
+                            </Link>
                         </Button>
                     </div>
                 )}
