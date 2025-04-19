@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": "true",
     "scripts": {
-        "dev": "pnpm build --watch",
+        "dev": "npm run build --watch",
         "build": "tsc -b -v",
         "lint": "eslint \"{src,apps,libs,test}/**/*.ts\""
     },

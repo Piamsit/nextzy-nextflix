@@ -2,7 +2,6 @@
 
 import { MovieCard } from "../components/MovieCard";
 import { useMovies } from "../hooks/useMovies";
-import Header from "@/components/layout/Header";
 import HeroBanner from "@/features/movie/components/HeroBanner";
 import {
     Carousel,
