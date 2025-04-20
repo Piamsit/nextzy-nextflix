@@ -1,7 +1,8 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { ApiQuery } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
 import { MovieService } from './movie.service';
 
+@ApiTags('movie')
 @Controller('movie')
 @ApiQuery({
     name: 'lang',

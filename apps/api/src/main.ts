@@ -38,6 +38,11 @@ async function bootstrap() {
 
     const document = SwaggerModule.createDocument(app, swaggerConfig);
     SwaggerModule.setup('api', app, document);
+
+    app.getHttpAdapter().get('/swagger-spec.json', (req, res) => {
+      res.header('Content-Type', 'application/json');
+      res.send(document);
+    });
   }
 
   const port = configService.get<number>('PORT') || 3001;
@@ -45,7 +50,8 @@ async function bootstrap() {
 
   console.log(`🚀 App is running on: http://localhost:${port}/api`);
   if (!isProd) {
-    console.log(`📚 Swagger available at: http://localhost:${port}/api-docs`);
+    console.log(`📚 Swagger UI available at: http://localhost:${port}/api-docs`);
+    console.log(`🔗 Swagger JSON available at: http://localhost:${port}/swagger-spec.json`);
   }
 }
 
