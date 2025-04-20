@@ -1,6 +1,6 @@
 'use client'
 
-import { Movie } from '@repo/types/movie/entities/movie.entity'
+import { Movie } from '@repo/types';
 import Image from 'next/image'
 import Link from 'next/link'
 

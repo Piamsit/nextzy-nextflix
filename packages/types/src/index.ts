@@ -1,8 +1,2 @@
-import { Movie, MovieResponse } from './movie/entities/movie.entity';
+export * from './movie/interfaces/movie.interface';
 
-export const movie = {
-    entities: {
-        Movie,
-        MovieResponse
-    },
-};

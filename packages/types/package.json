@@ -3,15 +3,10 @@
     "version": "0.0.0",
     "private": "true",
     "scripts": {
-        "dev": "npm run build --watch",
-        "build": "tsc -b -v",
-        "lint": "eslint \"{src,apps,libs,test}/**/*.ts\""
+        "build": "tsc",
+        "dev": "tsc -w",
+        "lint": "eslint . --max-warnings 0"
     },
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "files": [
-        "./dist/**"
-    ],
     "publishConfig": {
         "access": "public"
     },
@@ -24,16 +19,9 @@
     },
     "exports": {
         ".": {
-            "import": "./dist/index.js",
-            "require": "./dist/index.js"
-        },
-        "./*": {
-            "import": "./dist/*.js",
-            "require": "./dist/*.js"
+            "types": "./src/index.ts",
+            "default": "./dist/index.js"
         }
-    },
-    "dependencies": {
-        "@nestjs/mapped-types": "*"
     },
     "devDependencies": {
         "@repo/eslint-config": "*",

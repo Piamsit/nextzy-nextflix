@@ -1,4 +1,4 @@
-export class Movie {
+export interface Movie {
   id: number;
   title: string;
   overview: string;
@@ -14,7 +14,7 @@ export class Movie {
   video: boolean;
 }
 
-export class MovieResponse {
+export interface MovieResponse {
   page: number;
   results: Movie[];
   total_pages: number;

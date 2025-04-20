@@ -2,7 +2,7 @@
 
 import { Play, Info, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Movie } from '@repo/types/movie/entities/movie.entity';
+import { Movie } from '@repo/types';
 import Image from 'next/image';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useTranslations } from 'next-intl';
@@ -53,7 +53,11 @@ export default function HeroBanner({ movie }: HeroBannerProps) {
                             <span className="text-white text-3xl font-bold">{t("topTVShowToday")}</span>
                         </div>
 
-                        <p className="text-white text-lg mb-6 font-bold">
+                        <p className="text-white text-lg mb-6 font-bold line-clamp-3"
+                            style={{
+                                contentVisibility: 'auto',
+                                textRendering: 'optimizeSpeed'
+                            }}>
                             {movie.overview}
                         </p>
                         <div className="flex gap-4">

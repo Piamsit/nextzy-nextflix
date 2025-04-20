@@ -1,6 +1,6 @@
-import { Movie } from '@repo/types/movie/entities/movie.entity'
-import { useQuery } from '@tanstack/react-query'
-import { fetchMovieById } from '../services/movieService'
+import { Movie } from '@repo/types';
+import { useQuery } from '@tanstack/react-query';
+import { fetchMovieById } from '../services/movieService';
 
 export const useMovie = ({ movieId, locale }: { movieId: string, locale: string }) =>
     useQuery<Movie>({

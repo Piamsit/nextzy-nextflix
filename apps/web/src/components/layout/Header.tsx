@@ -52,10 +52,10 @@ export default function Header() {
         return (
             <header className='fixed top-0 w-full z-50 bg-black/80 backdrop-blur-sm pb-2'>
                 <div className="flex items-center justify-between w-full p-5">
-                    <Link href="/" className="w-24 h-7 relative">
+                    <Link href="/" className="w-24 h-7 relative" aria-label="Netflix Home" title="Netflix Home">
                         <Image
                             src="/netflix-n.png"
-                            alt="Netflix N"
+                            alt="Netflix logo"
                             width={24}
                             height={24}
                             priority
@@ -65,7 +65,12 @@ export default function Header() {
                     <div className="flex justify-center items-center space-x-4">
                         <LanguageToggle />
                         <ThemeToggle />
-                        <Button variant="ghost" size="icon" className="text-white">
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="text-white"
+                            aria-label="Cast to device"
+                        >
                             <Cast className="size-8 text-gray-200" />
                         </Button>
                         <div className="w-8 h-8 bg-gray-600 rounded" />
@@ -74,19 +79,20 @@ export default function Header() {
 
                 <div className="flex justify-center items-center gap-6 md:gap-10 w-full mt-4">
                     {primaryItems.map((item) => (
-                        <Link
+                        <span
                             key={item.title}
-                            href={item.href}
                             className="text-lg md:text-2xl text-gray-300 hover:text-white transition-colors"
+                            aria-label={item.title}
                         >
                             {item.title}
-                        </Link>
+                        </span>
                     ))}
 
                     <div className="flex items-center group">
-                        <span className='text-lg md:text-2xl'>{t("categories")}</span>
+                        <span className="text-lg md:text-2xl">{t("categories")}</span>
                         <ChevronDown
-                            className={'ml-1 h-4 w-4 transition-transform group-hover:rotate-180'}
+                            className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180"
+                            aria-label="Expand categories menu"
                         />
                     </div>
 
@@ -108,7 +114,7 @@ export default function Header() {
         >
             <div className='flex items-center justify-between w-full'>
                 <div className="flex items-center space-x-4 md:space-x-8">
-                    <Link href="/" className="w-24 h-7 relative">
+                    <Link href="/" className="w-24 h-7 relative" aria-label="Netflix Home" title="Netflix Home">
                         <NetflixLogo />
                     </Link>
 
@@ -130,18 +136,31 @@ export default function Header() {
                     </NavigationMenu>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <Button size="icon" variant={"ghost"} className='cursor-pointer hover:bg-transparent'>
+                    <Button
+                        size="icon"
+                        variant={"ghost"}
+                        className="cursor-pointer hover:bg-transparent"
+                        aria-label="Search"
+                    >
                         <Search className="size-6 text-gray-200" />
                     </Button>
                     <span className="text-sm text-gray-200 cursor-pointer">{t("kids")}</span>
-                    <Button size="icon" variant={"ghost"} className='cursor-pointer hover:bg-transparent'>
+                    <Button
+                        size="icon"
+                        variant={"ghost"}
+                        className="cursor-pointer hover:bg-transparent"
+                        aria-label="Notifications"
+                    >
                         <Bell className="size-6 text-gray-200" />
                     </Button>
                     <LanguageToggle />
                     <ThemeToggle />
                     <div className="flex items-center group">
                         <div className="w-8 h-8 bg-gray-600 rounded" />
-                        <ChevronDown className="size-4 text-emerald-700 transition-transform group-hover:rotate-180" />
+                        <ChevronDown
+                            className="size-4 text-emerald-700 transition-transform group-hover:rotate-180"
+                            aria-label="Profile menu"
+                        />
                     </div>
                 </div>
             </div>

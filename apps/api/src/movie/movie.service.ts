@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Movie } from '@repo/types/movie/entities/movie.entity';
+import { Movie } from '@repo/types';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 

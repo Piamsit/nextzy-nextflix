@@ -1,4 +1,4 @@
-import { Movie, MovieResponse } from '@repo/types/movie/entities/movie.entity';
+import { Movie, MovieResponse } from '@repo/types';
 import axios from 'axios';
 
 export const fetchMovies = async (locale = 'en'): Promise<MovieResponse> => {
