@@ -10,12 +10,14 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
   const isProd = configService.get('NODE_ENV') === 'production';
-  const frontendOrigin = configService.get<string>('FRONTEND_ORIGIN')?.split(',') ?? [];
+  // const frontendOrigin = configService.get<string>('FRONTEND_ORIGIN')?.split(',') ?? [];
 
-  app.enableCors({
-    origin: isProd ? frontendOrigin : true,
-    credentials: true,
-  });
+  app.enableCors(
+    // {
+    //   origin: isProd ? frontendOrigin : true,
+    //   credentials: true,
+    // }
+  );
 
   app.use(helmet());
 

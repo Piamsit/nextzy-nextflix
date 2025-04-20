@@ -23,6 +23,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
                     width={300}
                     height={165}
                     className="object-cover"
+                    loading="lazy"
                 />
             </div>
         </Link>

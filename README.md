@@ -6,7 +6,7 @@
 
 You can check out a live preview here:
 
-- **Frontend (web)**: Deployed on [Vercel](https://nextflix-git-main-piamsit1s-projects.vercel.app/)
+- **Frontend (web)**: Deployed on [Vercel](https://nextflix-nextzy.vercel.app/)
 - **Backend (api)**: Deployed on [Render](https://nextflix-xzkm.onrender.com/api/movie)
 
 > **Note**: If the backend API is inactive, it may take up to **50 seconds** to start due to Render's free-tier limitations.

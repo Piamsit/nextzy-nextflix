@@ -33,7 +33,7 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <main className="max-w-screen min-h-screen bg-black text-white">
+              <main className="overflow-hidden w-full min-h-screen bg-black text-white">
                 <Header />
                 {children}
               </main>

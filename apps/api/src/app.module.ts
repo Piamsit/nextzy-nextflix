@@ -13,7 +13,7 @@ import { MovieModule } from './movie/movie.module';
       validationSchema: Joi.object({
         NODE_ENV: Joi.string().valid('development', 'production').default('development'),
         PORT: Joi.number().default(3001),
-        FRONTEND_ORIGIN: Joi.string().required(),
+        // FRONTEND_ORIGIN: Joi.string().required(),
       }),
     }),
     ThrottlerModule.forRoot({
